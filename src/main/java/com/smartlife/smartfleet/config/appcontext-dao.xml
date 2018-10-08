@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="operadorDAO" class="com.smartlife.smartfleet.dao.OperadorDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="turnoDAO" class="com.smartlife.smartfleet.dao.TurnoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="tipoDAO" class="com.smartlife.smartfleet.dao.TipoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="estadoDAO" class="com.smartlife.smartfleet.dao.EstadoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="equipoDAO" class="com.smartlife.smartfleet.dao.EquipoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="applicationParameterDAO" class="com.smartlife.smartfleet.dao.ApplicationParameterDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="dispositivoDAO" class="com.smartlife.smartfleet.dao.DispositivoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+	<bean id="userDAO" class="com.smartlife.smartfleet.dao.UserDAOImpl">
+		<constructor-arg>
+        	<ref bean="sessionFactory" />
+    	</constructor-arg>
+	</bean>
+<!-- 	<bean id="baseTypeDAO" class="com.enma.sige.dao.BaseTypeDAOImpl"> -->
+<!-- 		<constructor-arg> -->
+<!--        		<ref bean="sessionFactory" /> -->
+<!--     	</constructor-arg> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="userDAO" class="com.enma.sige.dao.UserDAOImpl"> -->
+<!-- 		<constructor-arg> -->
+<!--        		<ref bean="sessionFactory" /> -->
+<!--     	</constructor-arg> -->
+<!-- 	</bean> -->
+</beans>

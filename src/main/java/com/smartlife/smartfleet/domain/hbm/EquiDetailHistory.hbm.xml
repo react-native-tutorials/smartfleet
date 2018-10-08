@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 5, 2018 1:37:07 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.EquiDetailHistory" table="equi_util_hist">
+       <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+        
+        <many-to-one name="horario" class="com.smartlife.smartfleet.domain.Horario" fetch="select" cascade="none" lazy="false">
+            <column name="horario_id" />
+        </many-to-one>
+        
+        <many-to-one name="equipo" class="com.smartlife.smartfleet.domain.Equipo" fetch="select" cascade="none" lazy="false">
+            <column name="equi_id" />
+        </many-to-one>
+        
+        <property name="fechaAbast" type="java.util.Date">
+            <column name="fecha_abast" />
+        </property>
+        <property name="cantComb" type="java.lang.String">
+            <column name="cant_comb" />
+        </property>
+         <property name="horometro" type="java.lang.String">
+            <column name="horometro" />
+        </property>
+        <property name="hodometro" type="java.lang.String">
+            <column name="hodometro" />
+        </property>
+        <property name="kilometraje" type="java.lang.String">
+            <column name="kilometraje" />
+        </property>
+    </class>
+</hibernate-mapping>

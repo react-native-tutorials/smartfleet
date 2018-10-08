@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Search all annotated beans -->
+<!-- 	<context:component-scan base-package="com.smartlife" /> -->
+	<import resource="classpath:/com/smartlife/smartfleet/config/appcontext-properties.xml"/>
+	<import resource="classpath:/com/smartlife/smartfleet/config/appcontext-datasource.xml"/>
+	<import resource="classpath:/com/smartlife/smartfleet/config/appcontext-dao.xml"/>
+	<import resource="classpath:/com/smartlife/smartfleet/config/appcontext-interceptor.xml"/>
+	<import resource="classpath:/com/smartlife/smartfleet/config/appcontext-services.xml"/>
+	<bean class="com.smartlife.smartfleet.config.CustomBeanPostProcessor"/>
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 15, 2018 11:31:40 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.common.Tipo" table="TIPO_BASE">
+        <id name="tipoId" type="java.lang.String">
+            <column name="ID" length="15"/>
+            <generator class="assigned" />
+        </id>
+        <property name="categoria" type="java.lang.String">
+            <column name="CATEGORIA" length="20"/>
+        </property>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" length="20"/>
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" length="100"/>
+        </property>
+        <property name="activo" type="java.lang.String">
+            <column name="ACTIVO" />
+        </property>
+    </class>
+</hibernate-mapping>

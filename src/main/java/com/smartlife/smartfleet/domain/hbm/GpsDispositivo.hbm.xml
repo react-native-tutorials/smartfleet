@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 28, 2018 3:20:57 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.GpsDispositivo" table="gps_disp">
+       <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+		<property name="latitude" type="java.lang.String">
+			<column name="latitud" length="60"/>
+		</property>
+		<property name="longitud" type="java.lang.String">
+			<column name="longitud" length="60"/>
+		</property>
+		<property name="altitud" type="java.lang.String">
+			<column name="altitud" length="60"/>
+		</property>
+		<property name="xUtm" type="java.lang.String">
+			<column name="XUTM" length="60"/>
+		</property>
+		<property name="yUtm" type="java.lang.String">
+			<column name="YUTM" length="60"/>
+		</property>
+		<property name="velocidad" type="java.lang.String">
+			<column name="velocidad" length="60"/>
+		</property>
+        <many-to-one name="dispositivo" class="com.smartlife.smartfleet.domain.Dispositivo" fetch="select" cascade="none" lazy="false">
+            <column name="disp_id" />
+        </many-to-one>
+        
+        <property name="fechaGps" type="java.util.Date">
+            <column name="fecha_gps" />
+        </property>
+    </class>
+</hibernate-mapping>

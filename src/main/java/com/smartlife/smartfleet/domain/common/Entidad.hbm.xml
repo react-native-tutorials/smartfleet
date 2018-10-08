@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 5, 2018 1:37:07 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.common.Entidad" table="ENTIDAD">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="version" type="java.lang.Integer">
+            <column name="VERSION" />
+        </property>
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="FECHACREA" />
+        </property>
+        <property name="fechaAct" type="java.util.Date">
+            <column name="FECHAACT" />
+        </property>
+        <property name="creaPor" type="java.lang.String">
+            <column name="CREAPOR" />
+        </property>
+        <property name="actPor" type="java.lang.String">
+            <column name="ACTPOR" />
+        </property>
+    </class>
+</hibernate-mapping>

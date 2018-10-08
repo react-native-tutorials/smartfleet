@@ -1,0 +1,262 @@
+@startuml
+Title Modelo de datos para la aplicacion SmartFleet
+!define table(x) class x << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+!define foreign_key(x) <i>x</i> FOREIGN KEY
+hide methods
+hide stereotypes
+
+tipo_base "1" -- "1..*" estado
+estado "1" -- "1..*" razon
+tipo_base "1" -- "1..*" equipo
+operador "1" -- "1..*" ope_equi
+equipo "1" -- "1..*" ope_equi
+dispositivo "1" -- "1..*" gps_disp
+equipo "1" -- "1" equi_disp
+dispositivo "1" -- "1" equi_disp
+equipo "1" -- "1..*" equi_state
+razon "1" -- "1..*" equi_state
+estado "1" -- "1..*" equi_state
+operador "1" -- "1..*" horarios
+horarios "1..*" -- "1" turno
+location_type "1" -- "1..*" locations
+usuarios "1" -- "1..*" usuario_roles
+usuario_roles "1..*" -right- "1" roles
+roles "1" -- "1..*" rol_componentes
+rol_componentes "1..*" -- "1" componentes_ui
+
+
+table(tipo_base){
+id : varchar 20
+categoria : varchar 60 not null
+tipo : varchar 60 not null
+descripcion : varchar 100
+activo : char 1 default 'Y'
+}
+
+table(estado){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(categoria) : varchar 20
+estado : varchar 60
+}
+
+table(razon){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(estado_id) : bigint 20
+razon : varchar 100
+}
+
+table(equipo){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(categoria) : varchar 20
+cdg_equi : varchar 60
+marca_equi : varchar 60
+modelo_equi : varchar 60
+cap_comb : numeric 15,2
+cap_carg : numeric 15,2
+activo : char 1 default 'Y',
+}
+
+table(operador){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60 
+doc_id : varchar 11 not null
+cdg_ope : varchar 20 not null
+nom_ope : varchar 100 not null
+ape_ope : varchar 100 not null
+}
+
+table(ope_equi){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(ope_id) : bigint 20
+foreign_key(equi_id) : bigint 20
+fecha_asig : date
+tipo_asig : varchar 60
+}
+
+table(dispositivo){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+ip_disp : varchar 60
+gate_disp : varchar 60
+mac_disp : varchar 60
+tip_disp : varchar 60
+}
+
+table(gps_disp){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+latitud : varchar 60
+longitud : varchar 60
+altitud : varchar 60
+xutm : varchar 60
+yutm : varchar 60
+velocidad : varchar 60
+fecha_gps : datetime default now()
+foreign_key(disp_id) : bigint 20
+}
+
+table(equi_disp){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+fecha_asig : datetime
+activo : char 1
+foreign_key(equi_id) : bigint 20
+foreign_key(disp_id) : bigint 20
+}
+
+table(equi_state){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(equi_id) : bigint 20
+foreign_key(state_id) : bigint 20
+foreign_key(razon_id) : bigint 20
+fecha_ini : datetime
+fecha_fin : datetime
+}
+
+table(turno){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+nom_turno : varchar 60
+horas : integer 20
+hora_ini : time
+hora_fin : time
+}
+
+table(horarios){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+fecha_asig : date
+foreign_key(ope_id) : bigint 20
+foreign_key(turno_id) : bigint 20
+}
+
+table(location_type){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+loc_type_name : varchar 60
+loc_type_red : integer default 255
+loc_type_green : integer default 255
+loc_type_blue : integer default 255
+}
+
+table(locations){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(location_type) : bigint 20
+location_name : varchar(60)
+location_x : varchar(60)
+location_y : varchar(60)
+location_z : varchar(60)
+}
+
+table(route_path){
+primary_key(id) : bigint 20
+version : integer default 0
+fecha_crea : datetime default now()
+fecha_act : datetime
+crea_por : varchar 60 default 'SISTEMA'
+act_por : varchar 60
+foreign_key(equi_id) : bigint 20
+foreign_key(location_ini) : bigint 20
+foreign_key(location_fin) : bigint 20
+time_ini : datetime
+time_fin : datetime
+total_time : integer
+time_spent : integer
+total_distance : integer
+distance_spent : integer
+}
+
+table(usuarios){
+primary_key(id) : bigint 20
+-nombre_usu : varchar 60
+-clave_usu : varchar 60
+-activo : boolean
+}
+
+table(roles){
+primary_key(id) : bigint 20
+-rol_nom : varchar 60
+-rol_desc : varchar 200
+-activo : boolean
+}
+
+table(usuario_roles){
+primary_key(id) : bigint 20
+foreign_key(usu_id) : bigint 20
+foreign_key(rol_id) : bigint 20
+-fecha_asig : datetime
+-activo : boolean
+}
+
+table(componentes_ui){
+primary_key(id) : bigint 20
+-comp_nom : varchar 60
+-comp_tipo : varchar 60
+}
+
+table(rol_componentes){
+primary_key(id) : bigint 20
+foreign_key(rol_id) : bigint 20
+foreign_key(componentui_id) : bigint 20
+-activo : boolean
+}
+@enduml

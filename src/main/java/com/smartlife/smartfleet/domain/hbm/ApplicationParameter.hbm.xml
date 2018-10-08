@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.ApplicationParameter" table="APPLICATIONPARAMETER">
+        <id name="code" type="java.lang.String">
+            <column name="CODE" length="15"/>
+            <generator class="assigned" />
+        </id>
+        <property name="creaPor" type="java.lang.String">
+            <column name="CREA_POR" length="20"/>
+        </property>
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="FECHA_CREA" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="80"/>
+        </property>
+        <property name="textValue" type="java.lang.String">
+            <column name="TEXTVALUE" length="80"/>
+        </property>
+        <property name="intValue" type="java.lang.Integer">
+            <column name="INTVALUE" />
+        </property>
+        <property name="doubleValue" type="java.math.BigDecimal">
+            <column name="DOUBLEVALUE" precision="7" scale="3" />
+        </property>
+        <property name="startInterval" type="java.lang.String">
+            <column name="STARTINTERVAL" length="30"/>
+        </property>
+        <property name="endInterval" type="java.lang.String">
+            <column name="ENDINTERVAL" length="30"/>
+        </property>
+        <property name="activeIndicator" type="java.lang.String">
+            <column name="ACTIVEINDICATOR" length="1"/>
+        </property>
+    </class>
+</hibernate-mapping>

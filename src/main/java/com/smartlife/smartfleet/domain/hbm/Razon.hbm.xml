@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 16, 2018 3:18:57 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.Razon" table="RAZONES">
+        <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+        <many-to-one name="estado" class="com.smartlife.smartfleet.domain.Estado" fetch="select" cascade="none" lazy="false">
+            <column name="ESTADO_ID" />
+        </many-to-one>
+        <property name="razon" type="java.lang.String">
+            <column name="RAZON" length="100"/>
+        </property>
+        <bag name="equiReasons" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="RAZON_ID">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="com.smartlife.smartfleet.domain.EstadoEquipo" />
+        </bag>
+    </class>
+</hibernate-mapping>

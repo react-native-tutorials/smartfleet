@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 17, 2018 1:38:35 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.Turno" table="TURNOS">
+        <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+        <property name="horas" type="java.lang.Integer">
+            <column name="HORAS" />
+        </property>
+        <property name="horaFin" type="java.sql.Time">
+            <column name="HORA_FIN" />
+        </property>
+        <property name="horaIni" type="java.sql.Time">
+            <column name="HORA_INI" />
+        </property>
+        <property name="nomTurno" type="java.lang.String">
+            <column name="NOM_TURNO" length="60"/>
+        </property>
+        <bag name="horarios" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="turno_id">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="com.smartlife.smartfleet.domain.Horario" />
+        </bag>
+    </class>
+</hibernate-mapping>

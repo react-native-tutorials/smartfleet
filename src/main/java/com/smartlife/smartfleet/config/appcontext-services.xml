@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="smartFacade"
+		class="com.smartlife.smartfleet.facade.SmartFacade">
+		<property name="stateService">
+			<ref bean="stateService"></ref>
+		</property>
+		<property name="tipoService">
+			<ref bean="tipoService"></ref>
+		</property>
+		<property name="applicationService">
+			<ref bean="applicationService"></ref>
+		</property>
+		<property name="operatorService">
+			<ref bean="operatorService"></ref>
+		</property>
+		<property name="dispositivoService">
+			<ref bean="dispositivoService"></ref>
+		</property>
+		<property name="equipoService">
+			<ref bean="equipoService"></ref>
+		</property>
+		<property name="userService">
+			<ref bean="userService"></ref>
+		</property>
+		<property name="turnoService">
+			<ref bean="turnoService"></ref>
+		</property>
+	</bean>
+	<bean id="stateService"
+		class="com.smartlife.smartfleet.services.StateServiceImpl">
+		<property name="estadoDAO">
+			<ref bean="estadoDAO"></ref>
+		</property>
+	</bean>
+	<bean id="tipoService"
+		class="com.smartlife.smartfleet.services.TipoServiceImpl">
+		<property name="tipoDAO">
+			<ref bean="tipoDAO"></ref>
+		</property>
+	</bean>
+	<bean id="applicationService"
+		class="com.smartlife.smartfleet.services.ApplicationServiceImpl">
+		<property name="applicationParameterDAO">
+			<ref bean="applicationParameterDAO"></ref>
+		</property>
+	</bean>
+	<bean id="dispositivoService"
+		class="com.smartlife.smartfleet.services.DispositivoServiceImpl">
+		<property name="dispositivoDAO">
+			<ref bean="dispositivoDAO"></ref>
+		</property>
+	</bean>
+	<bean id="operatorService"
+		class="com.smartlife.smartfleet.services.OperatorServiceImpl">
+		<property name="operadorDAO">
+			<ref bean="operadorDAO"></ref>
+		</property>
+	</bean>
+	<bean id="equipoService"
+		class="com.smartlife.smartfleet.services.EquipoServiceImpl">
+		<property name="equipoDAO">
+			<ref bean="equipoDAO"></ref>
+		</property>
+	</bean>
+	<bean id="userService"
+		class="com.smartlife.smartfleet.services.UserServiceImpl">
+		<property name="userDAO">
+			<ref bean="userDAO"></ref>
+		</property>
+	</bean>
+	<bean id="turnoService"
+		class="com.smartlife.smartfleet.services.TurnoServiceImpl">
+		<property name="turnoDAO">
+			<ref bean="turnoDAO"></ref>
+		</property>
+	</bean>
+</beans>

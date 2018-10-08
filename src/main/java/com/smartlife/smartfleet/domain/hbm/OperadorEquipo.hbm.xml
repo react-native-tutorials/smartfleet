@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 28, 2018 3:20:57 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.OperadorEquipo" table="ope_equi">
+       <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+        <many-to-one name="operador" class="com.smartlife.smartfleet.domain.Operador" fetch="select" cascade="none" lazy="false">
+            <column name="ope_id" />
+        </many-to-one>
+        <many-to-one name="equipo" class="com.smartlife.smartfleet.domain.Equipo" fetch="select" cascade="none" lazy="false">
+            <column name="equi_id" />
+        </many-to-one>
+        <property name="fechaAsig" type="java.util.Date">
+            <column name="fecha_asig" />
+        </property>
+        <property name="tipoAsig" type="java.lang.String">
+            <column name="tipo_asig" />
+        </property>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_ini" />
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<!-- Generated Aug 16, 2018 4:59:14 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.smartlife.smartfleet.domain.Equipo" table="EQUIPOS">
+        <id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<version name="version" type="java.lang.Integer">
+			<column name="VERSION" />
+		</version>
+		<property name="fechaCrea" type="timestamp">
+			<column name="FECHA_CREA" />
+		</property>
+		<property name="fechaAct" type="timestamp">
+			<column name="FECHA_ACT" />
+		</property>
+		<property name="creaPor" type="java.lang.String">
+			<column name="CREA_POR" length="60"/>
+		</property>
+		<property name="actPor" type="java.lang.String">
+			<column name="ACT_POR" length="60"/>
+		</property>
+		
+        <property name="codigoEquipo" type="java.lang.String">
+            <column name="CDG_EQUI" length="60"/>
+        </property>
+        <property name="marcaEquipo" type="java.lang.String">
+            <column name="MARCA_EQUI" length="60"/>
+        </property>
+        
+        <many-to-one name="categoriaEquipo" class="com.smartlife.smartfleet.domain.common.Tipo" not-null="true" fetch="join" lazy="false">
+            <column name="CATEGORIA" />
+        </many-to-one>
+        
+        <property name="capCarga" type="java.math.BigDecimal">
+            <column name="CAP_CARG" precision="15" scale="6" />
+        </property>
+        <property name="capCombustible" type="java.math.BigDecimal">
+            <column name="CAP_COMB" precision="15" scale="6" />
+        </property>
+        <property name="modeloEquipo" type="java.lang.String">
+            <column name="MODELO_EQUI" length="60"/>
+        </property>
+        <property name="activo" type="java.lang.String">
+            <column name="ACTIVO" />
+        </property>
+        <bag name="dispositivos" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="equi_id">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="com.smartlife.smartfleet.domain.EquipoDispositivo" />
+        </bag>
+        <bag name="equipoStates" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="equi_id">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="com.smartlife.smartfleet.domain.EstadoEquipo" />
+        </bag>
+        <bag name="operadores" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="equi_id">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="com.smartlife.smartfleet.domain.OperadorEquipo" />
+        </bag>
+    </class>
+</hibernate-mapping>
